@@ -4,62 +4,42 @@ const app = express();
 
 app.use(express.json());
 
-
 app.get("/api/products", (req, res) => {
+  const products = [
+    {
+      id: 1,
+      pname: "T-Shirt",
+      price: 499,
+    },
 
-    const products = [
+    {
+      id: 2,
+      pname: "Laptop",
+      price: 55000,
+    },
+  ];
 
-        {
-            id: 1,
-            pname: "T-Shirt",
-            price: 499
-        },
+  res.json({
+    success: true,
 
-        {
-            id: 2,
-            pname: "Laptop",
-            price: 55000
-        }
-
-    ];
-
-
-    res.json({
-
-        success: true,
-
-        products: products
-
-    });
-
+    products: products,
+  });
 });
-
 
 app.get("/api/student/:id", (req, res) => {
+  res.json({
+    success: true,
 
-    res.json({
+    student: {
+      id: req.params.id,
 
-        success: true,
+      name: "Rahul",
 
-        student: {
-
-            id: req.params.id,
-
-            name: "Rahul",
-
-            course: "BCA"
-
-        }
-
-    });
-
+      course: "BCA",
+    },
+  });
 });
 
-
 app.listen(3000, () => {
-
-    console.log(
-        "Express server running on port 3000"
-    );
-
+  console.log("Express server running on port 3000");
 });
